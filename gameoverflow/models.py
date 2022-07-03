@@ -11,7 +11,7 @@ class Question(models.Model):
     question_tags = ArrayField(models.CharField(max_length=200), size=5)
     question_vote = models.IntegerField(default=0)
     question_views = models.IntegerField(default=0)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField(auto_now_add=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
@@ -21,7 +21,7 @@ class Answer(models.Model):
     answer_text = models.CharField(max_length=200)
     answer_vote = models.IntegerField(default=0)
     answer_question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField(auto_now_add=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
