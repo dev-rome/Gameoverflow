@@ -9,20 +9,22 @@
     </html>
     <nav>
         {% if user.is_authenticated %}
-        <p class="logo">GameOverFLow</p>
+        <p class="logo">GameOverFlow</p>
         <ul class="nav-links">
-            <li><a href="{% url 'index' %}">Question</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'question_list' %">Question</a></li>
+            
             <div>
                 <span class="nav-icon"><i class="fas fa-user"></i>{{ user.username }}</span>
                 <li><a class="btn btn-logout" href="{% url 'logout' %}">Logout</a></li>
             </div>
         {% else %}
-        <p class="logo">GameOverFLow</p>
+        <p class="logo">GameOverFlow</p>
         <ul class="nav-links">
-            <li><a href="{% url 'index' %}">Question</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'question_list' %}">Question</a></li>
             <div>
                 <li><a class="btn btn-logint" href="{% url 'login' %}">Login</a></li>
-                <li><a class="btn btn-signup" href="{% url 'register' %}">Sign-up</a></li>
             </div>
         {% endif %}   
     </nav>
