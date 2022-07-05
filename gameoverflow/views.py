@@ -23,7 +23,7 @@ class Signup(View):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return redirect('question_list')
         else:
             context = {"form": form}
             return render(request, 'registration/signup.html', context)        
