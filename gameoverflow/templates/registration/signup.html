@@ -1,9 +1,9 @@
-{% extends 'gameoverflow/base.html' %} {% block content %}
+{% extends "gameoverflow/base.html" %} {% block content %}
 
 <h1 class="sign-up-title">Sign-Up</h1>
-<form method="post" action="{% url 'signup'}">
+<form method="post" action="{% url 'signup' %}">
   {% csrf_token %} {{ form.as_p }}
-  <input type="submit" class="btn btn-signup" value="Sign-up" />
+  <input type="submit" class="btn btn-signup" value="Sign Up" />
   <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
