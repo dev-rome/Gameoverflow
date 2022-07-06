@@ -12,7 +12,7 @@
         <p class="logo">GameOverFlow</p>
         <ul class="nav-links">
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'question_list' %">Question</a></li>
+            <li><a href="{% url 'question_list' %}">Question</a></li>
             
             <div>
                 <span class="nav-icon"><i class="fas fa-user"></i>{{ user.username }}</span>
@@ -25,6 +25,7 @@
             <li><a href="{% url 'question_list' %}">Question</a></li>
             <div>
                 <li><a class="btn btn-logint" href="{% url 'login' %}">Login</a></li>
+                <li><a class="navbar-item" href="{% url 'signup' %}">Sign Up</a></li>
             </div>
         {% endif %}   
     </nav>
