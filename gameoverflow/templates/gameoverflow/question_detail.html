@@ -1,0 +1,11 @@
+{% extends "gameoverflow/base.html" %} {% block content %}
+
+<h1 class="question-title">{{ question.question_title }}</h1>
+<p class="question-text">{{ question.question_text }}</p>
+{% for tag in question.question_tags %}
+<span class="tag">{{ tag }}</span>
+{% endfor %}
+<span class="question-date">{{ question.pub_date }}</span>
+<span class="user">{{ question.user }}</span>
+
+{% endblock content %}
