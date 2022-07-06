@@ -2,10 +2,12 @@
 
 <h2 class="all-questions-title">All Questions</h2>
 
+<a href="{% url 'question_ask' %}" class="btn btn-primary btn-lg btn-create-question">Ask Question</a>
+
 <ul>
   {% for question in questions %}
   <li>
-    <a href="">{{ question.question_title }}</a>
+    <a href="{% url 'question_detail' pk=question.pk %}">{{ question.question_title }}</a>
   </li>
   <p class="question-text">{{ question.question_text }}</p>
   <p class="user">{{ question.user }}</p>
