@@ -8,4 +8,11 @@
 <span class="question-date">{{ question.pub_date }}</span>
 <span class="user">{{ question.user }}</span>
 
+<!-- show answer -->
+{% for answer in answers %}
+<p class="answer-text">{{ answer.answer_text }}</p>
+<span class="answer-date">{{ answer.pub_date }}</span>
+<span class="user">{{ answer.user }}</span>
+{% endfor %}
+
 {% endblock content %}
