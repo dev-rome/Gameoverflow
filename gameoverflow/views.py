@@ -1,4 +1,3 @@
-from urllib import request
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -20,9 +19,18 @@ def question_list(request):
     return render(request, 'gameoverflow/question_list.html', {'questions': questions})
 
 
-def question_detail(request, pk):
-    question = Question.objects.get(pk=pk)
-    return render(request, 'gameoverflow/question_detail.html', {'question': question})
+def question_detail(request, id):
+    question = Question.objects.get(pk=id)
+    answers = Answer.objects.filter(question=question)
+    answerform = AnswerForm()
+    if request.method == 'POST':
+        answerData = AnswerForm(request.POST)
+        if answerData.is_valid():
+            answer = answerData.save(commit=False)
+            answer.question = question
+            answer.user = request.user
+            answer.save()
+    return render(request, 'gameoverflow/question_detail.html', {'question': question, 'answers': answers, 'answerform': answerform})
 
 
 @login_required
