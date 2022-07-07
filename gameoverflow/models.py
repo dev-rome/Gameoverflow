@@ -15,12 +15,12 @@ class Question(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        return self.question_text
+        return self.question_title
 
 class Answer(models.Model):
     answer_text = models.CharField(max_length=200)
     answer_vote = models.IntegerField(default=0)
-    answer_question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
