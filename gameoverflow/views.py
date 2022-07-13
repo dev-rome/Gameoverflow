@@ -30,7 +30,48 @@ def question_detail(request, id):
             answer.question = question
             answer.user = request.user
             answer.save()
+            return redirect('question_detail', id=answer.question.id)
     return render(request, 'gameoverflow/question_detail.html', {'question': question, 'answers': answers, 'answerform': answerform})
+
+
+def question_edit(request, id):
+    question = Question.objects.get(pk=id)
+    if request.method == 'POST':
+        form = QuestionForm(request.POST, instance=question)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.save()
+            return redirect('question_detail', id=question.id)
+    else:
+        form = QuestionForm(instance=question)
+    return render(request, 'gameoverflow/question_form.html', {'form': form})
+
+
+def answer_edit(request, id):
+    answer = Answer.objects.get(pk=id)
+    if request.method == 'POST':
+        form = AnswerForm(request.POST, instance=answer)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.save()
+            return redirect('question_detail', id=answer.question.id)
+    else:
+        form = AnswerForm(instance=answer)
+    return render(request, 'gameoverflow/answer_form.html', {'form': form})
+
+
+def question_delete(request, id):
+    Question.objects.get(pk=id).delete()
+    return redirect('question_list')
+
+# delete answer on question detail page
+
+
+def answer_delete(request, id):
+    answer = Answer.objects.get(pk=id)
+    answer_id = answer.question.id
+    answer.delete()
+    return redirect('question_detail', id=answer_id)
 
 
 @login_required
@@ -41,7 +82,7 @@ def question_ask(request):
             question = form.save(commit=False)
             question.user = request.user
             question.save()
-            return redirect('question_detail', pk=question.pk)
+            return redirect('question_detail', id=question.id)
     else:
         form = QuestionForm()
     return render(request, 'gameoverflow/question_ask.html', {'form': form})
