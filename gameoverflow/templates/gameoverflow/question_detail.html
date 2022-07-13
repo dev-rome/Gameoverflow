@@ -1,5 +1,9 @@
 {% extends "gameoverflow/base.html" %} {% block content %}
 
+<a href="{% url 'question_edit' id=question.id %}">Edit</a>
+<a href="{% url 'question_delete' id=question.id %}">Delete</a>
+<a href="{% url 'question_list' %}">Back</a>
+
 <h1 class="question-title">{{ question.question_title }}</h1>
 <p class="question-text">{{ question.question_text }}</p>
 {% for tag in question.question_tags %}
@@ -13,6 +17,16 @@
 <p class="answer-text">{{ answer.answer_text }}</p>
 <span class="answer-date">{{ answer.pub_date }}</span>
 <span class="user">{{ answer.user }}</span>
+<a href="{% url 'answer_edit' answer.pk %}">Edit</a>
+<a href="{% url 'answer_delete' answer.pk %}">Delete</a>
+
 {% endfor %}
+
+<!-- answer form -->
+<form method="POST">
+    {% csrf_token %} {{ form.as_p }}
+  <textarea name="answer_text" rows="5" cols="40"></textarea>
+  <button type="submit" class="btn btn-save">Submit</button>
+</form>
 
 {% endblock content %}
