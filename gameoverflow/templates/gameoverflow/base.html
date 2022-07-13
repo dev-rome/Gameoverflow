@@ -3,34 +3,39 @@
 <html lang="en">
 <html>
     <head>
-        <title>GameOverFLow</title>
-        <link rel="stylesheet" href="{% static 'css/gameoverflow.css'}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GameOverFlow</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
     </html>
     <nav>
         {% if user.is_authenticated %}
         <p class="logo">GameOverFlow</p>
         <ul class="nav-links">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'question_list' %}">Question</a></li>
+            <li><a class="navbar-item" href="{% url 'index' %}">Home</a></li>
+            <li><a class="navbar-item" href="{% url 'question_list' %}">Question</a></li>
             
-            <div>
-                <span class="nav-icon"><i class="fas fa-user"></i>{{ user.username }}</span>
-                <li><a class="btn btn-logout" href="{% url 'logout' %}">Logout</a></li>
+            <div class="nav-links ">
+                <span class=" navbar-item nav-icon"><i class="fas fa-user user-icon"></i>{{ user.username }}</span>
+                <li><a class="navbar-item btn btn-logout" href="{% url 'logout' %}">Logout</a></li>
             </div>
         {% else %}
         <p class="logo">GameOverFlow</p>
         <ul class="nav-links">
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'question_list' %}">Question</a></li>
-            <div>
-                <li><a class="btn btn-logint" href="{% url 'login' %}">Login</a></li>
-                <li><a class="navbar-item" href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a class="navbar-item" href="{% url 'index' %}">Home</a></li>
+            <li><a class="navbar-item" href="{% url 'question_list' %}">Question</a></li>
+            <div class="nav-links">
+                <li><a class="navbar-item btn btn-login" href="{% url 'login' %}">Login</a></li>
+                <li><a class="navbar-item btn btn-signup" href="{% url 'signup' %}">Sign Up</a></li>
             </div>
         {% endif %}   
     </nav>
     <body>
-        <main>
+        <main class="container">
             {% block content %}
             {% endblock %}
         </main>
