@@ -6,6 +6,9 @@
 
 <ul>
   {% for question in questions %}
+  <p class="question-vote">{{ question.question_vote }}</p>
+  <p class="question-answer">{{ question.question_answer }}</p>
+  <p class="question-views">{{ question.question_views }}</p>
   <li>
     <a href="{% url 'question_detail' id=question.id %}">{{ question.question_title }}</a>
   </li>
