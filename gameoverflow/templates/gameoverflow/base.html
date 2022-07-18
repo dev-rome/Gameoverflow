@@ -16,7 +16,6 @@
         {% if user.is_authenticated %}
         <p class="logo">GameOverFlow</p>
         <ul class="nav-links">
-            <li><a class="navbar-item" href="{% url 'index' %}">Home</a></li>
             <li><a class="navbar-item" href="{% url 'question_list' %}">Question</a></li>
             
             <div class="nav-links ">
@@ -26,7 +25,6 @@
         {% else %}
         <p class="logo">GameOverFlow</p>
         <ul class="nav-links">
-            <li><a class="navbar-item" href="{% url 'index' %}">Home</a></li>
             <li><a class="navbar-item" href="{% url 'question_list' %}">Question</a></li>
             <div class="nav-links">
                 <li><a class="navbar-item btn btn-login" href="{% url 'login' %}">Login</a></li>
@@ -35,9 +33,12 @@
         {% endif %}   
     </nav>
     <body>
-        <main class="container">
+        <main>
             {% block content %}
             {% endblock %}
         </main>
     </body>
+    <footer class="footer">
+        <p class="footer-text">&copy; GameOverFlow 2022</p>
+    </footer>
 </html>
