@@ -1,32 +1,85 @@
 {% extends "gameoverflow/base.html" %} {% block content %}
 
-<a href="{% url 'question_edit' id=question.id %}">Edit</a>
-<a href="{% url 'question_delete' id=question.id %}">Delete</a>
-<a href="{% url 'question_list' %}">Back</a>
+<article class="container">
+  <div class="question-top-detail">
+    <div class="test-div-top">
+      <div class="title-container">
+        <h1 class="question-title">{{ question.question_title }}</h1>
+        <div class="question-btn">
 
-<h1 class="question-title">{{ question.question_title }}</h1>
-<p class="question-text">{{ question.question_text }}</p>
-{% for tag in question.question_tags %}
-<span class="tag">{{ tag }}</span>
-{% endfor %}
-<span class="question-date">{{ question.pub_date }}</span>
-<span class="user">{{ question.user }}</span>
+            <a class="edit" href="{% url 'question_edit' id=question.id %}">Edit</a>
+            <a class="delete" href="{% url 'question_delete' id=question.id %}"
+            >Delete</a
+            >
+        </div>
+      </div>
+    </div>
 
-<!-- show answer -->
-{% for answer in answers %}
-<p class="answer-text">{{ answer.answer_text }}</p>
-<span class="answer-date">{{ answer.pub_date }}</span>
-<span class="user">{{ answer.user }}</span>
-<a href="{% url 'answer_edit' answer.pk %}">Edit</a>
-<a href="{% url 'answer_delete' answer.pk %}">Delete</a>
+    <a href="{% url 'question_ask' %}" class="btn btn-ask-question"
+      >Ask Question</a
+    >
+  </div>
 
-{% endfor %}
+  <ul class="question-container-detail">
+    <div class="question-count">
+      <i class="fa-solid fa-angle-up up"></i>
+      <span class="vote-count">{{ question.question_vote }}</span>
+      <i class="fa-solid fa-angle-down down"></i>
+    </div>
+    <div class="question-col">
+      <li class="question-text-detail">{{ question.question_text }}</li>
+      <div class="question-summary-bottom">
+        <div class="question-user">
+          <li class="user">{{ question.user }}</li>
+          <li class="question-date">{{ question.pub_date }}</li>
+        </div>
+        {% for tag in question.question_tags %}
+        <div class="question-tags">
+          <li class="tag">{{ tag }}</li>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </ul>
 
-<!-- answer form -->
-<form method="POST">
-    {% csrf_token %} {{ form.as_p }}
-  <textarea name="answer_text" rows="5" cols="40"></textarea>
-  <button type="submit" class="btn btn-save">Submit</button>
-</form>
+  <!-- show answer -->
+  <div class="answer-container">
+    <p class="answer-title">{{question.question_answer }} Answers</p>
+  </div>
 
+  <div class="answer-detail-container">
+    {% for answer in answers %}
+    <div class="answer-detail">
+
+        <div class="question-count">
+            <i class="fa-solid fa-angle-up up"></i>
+            <span class="vote-count">{{ question.question_vote }}</span>
+            <i class="fa-solid fa-angle-down down"></i>
+        </div>
+        <div class="answer-col">
+            <p class="answer-text">{{ answer.answer_text }}</p>
+            <div class="answer-user">
+                <span class="user">{{ answer.user }}</span>
+                <span class="answer-date">{{ answer.pub_date }}</span>
+            </div>
+            <div class="answer-btn">
+                <a class="edit" href="{% url 'answer_edit' answer.pk %}">Edit</a>
+                <a class="delete" href="{% url 'answer_delete' answer.pk %}">Delete</a>
+            </div>
+        </div>
+        
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- answer form -->
+  <div class="answer-form">
+    <h1 class="user-answer-title">post your answer</h1>
+      <form method="POST">
+          {% csrf_token %} {{ form.as_p }}
+          <textarea name="answer_text" rows="5" cols="40"></textarea>
+          <button type="submit" class="btn btn-save">Submit</button>
+        </form>
+    </article>
+</div>
 {% endblock content %}
