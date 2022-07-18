@@ -93,6 +93,8 @@ WSGI_APPLICATION = 'gameoverflow_django.wsgi.application'
 #     }
 # }
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 DATABASES = {
   'default': dj_database_url.config(conn_max_age=600)
 }
@@ -143,5 +145,4 @@ LOGIN_REDIRECT_URL = 'question_list'
 LOGOUT_REDIRECT_URL = 'question_list'
 
 
-CORS_ALLOW_ALL_ORIGINS = True
 STATIC_ROOT=os.path.join(BASE_DIR, "static/")
