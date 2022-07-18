@@ -1,0 +1,1 @@
+web: gunicorn gameoverflow_django.wsgi

@@ -1,3 +1,6 @@
+import os
+import dj_database_url
+
 """
 Django settings for gameoverflow_django project.
 
@@ -13,6 +16,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from ctypes import cast
 from pathlib import Path
 import environ
+
 
 env = environ.Env()
 environ.Env.read_env()
@@ -44,12 +48,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gameoverflow',
     'django_extensions',
-    'fontawesomefree'
+    'fontawesomefree',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,16 +88,19 @@ WSGI_APPLICATION = 'gameoverflow_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': 'localhost'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DATABASE_NAME'),
+#         'USER': env('DATABASE_USER'),
+#         'PASSWORD': env('DATABASE_PASSWORD'),
+#         'HOST': 'localhost'
+#     }
+# }
 
+DATABASES = {
+  'default': dj_database_url.config(conn_max_age=600)
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -133,5 +143,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'question_list'
+LOGOUT_REDIRECT_URL = 'question_list'
+
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+STATIC_ROOT=os.path.join(BASE_DIR, "static/")
