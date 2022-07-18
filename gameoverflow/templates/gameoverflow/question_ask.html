@@ -1,6 +1,13 @@
-<h1 class="ask-question">Ask a question</h1>
-<form method="POST">
-    {% csrf_token %} {{ form.as_p }}
-    <button type="submit" class="btn btn-ask">Submit</button>
-    <a href="{% url 'question_list' %}">Cancel</a>
-</form>
+{% extends "gameoverflow/base.html" %} {% block content %}
+
+<div class="form-container">
+  <div class="ask-question-form">
+    <h1 class="ask-question">Ask a question</h1>
+    <form method="POST">
+      {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn btn-ask">Submit</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

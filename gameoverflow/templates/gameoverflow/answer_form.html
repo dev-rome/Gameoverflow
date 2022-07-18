@@ -1,5 +1,13 @@
-<h2>Edit Answer</h2>
-<form method="POST" class="question-form">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit" class="btn btn-save">Save</button>
-</form>
+{% extends "gameoverflow/base.html" %} {% block content %}
+<div class="form-container">
+    <div class="edit-answer-form">
+
+        <h2>Edit Answer</h2>
+        <form method="POST" class="answer-form-text">
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit" class="btn btn-save">Save</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
