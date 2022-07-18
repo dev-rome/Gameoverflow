@@ -1,23 +1,41 @@
 {% extends "gameoverflow/base.html" %} {% block content %}
+<article class="container">
+  <div class="question-top">
+    <h2 class="all-questions-title">All Questions</h2>
 
-<h2 class="all-questions-title">All Questions</h2>
+    <a href="{% url 'question_ask' %}" class="btn btn-ask-question"
+      >Ask Question</a
+    >
+  </div>
 
-<a href="{% url 'question_ask' %}" class="btn btn-primary btn-lg btn-create-question">Ask Question</a>
-
-<ul>
-  {% for question in questions %}
-  <p class="question-vote">{{ question.question_vote }}</p>
-  <p class="question-answer">{{ question.question_answer }}</p>
-  <p class="question-views">{{ question.question_views }}</p>
-  <li>
-    <a href="{% url 'question_detail' id=question.id %}">{{ question.question_title }}</a>
-  </li>
-  <p class="question-text">{{ question.question_text }}</p>
-  <p class="user">{{ question.user }}</p>
-  {% for tag in question.question_tags %}
-  <span class="tag">{{ tag }}</span>
-  {% endfor %}
-  <span class="question-date">{{ question.pub_date }}</span>
-  {% endfor %}
-</ul>
+  <ul class="question-container">
+    {% for question in questions %}
+    <div class="question-summary">
+      <div class="question-stats">
+        <li class="question-vote">{{ question.question_vote }} votes</li>
+        <li class="question-answer">{{ question.question_answer }} answers</li>
+        <li class="question-views">{{ question.question_views }} views</li>
+      </div>
+      <div class="question-detail">
+        <li>
+          <a class="question-title" href="{% url 'question_detail' id=question.id %}"
+            >{{ question.question_title }}</a
+          >
+        </li>
+        <div class="question-summary-bottom">
+          <div class="question-user">
+            <li class="user">{{ question.user }}</li>
+            <li class="question-date">{{ question.pub_date }}</li>
+          </div>
+          {% for tag in question.question_tags %}
+          <div class="question-tags">
+            <li class="tag">{{ tag }}</li>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </ul>
+</article>
 {% endblock content %}
