@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 # quesion model
+
+
 class Question(models.Model):
     question_title = models.CharField(max_length=200)
     question_text = models.CharField(max_length=200)
@@ -18,6 +20,7 @@ class Question(models.Model):
     def __str__(self):
         return self.question_title
 
+
 class Answer(models.Model):
     answer_text = models.CharField(max_length=200)
     answer_vote = models.IntegerField(default=0)
@@ -26,4 +29,4 @@ class Answer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        return self.answer_text        
+        return self.answer_text
