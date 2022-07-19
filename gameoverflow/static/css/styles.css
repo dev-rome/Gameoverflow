@@ -133,7 +133,7 @@ nav {
   border-radius: 5px;
 }
 
-.test-div-top {
+.question-div-top {
   display: flex;
   flex-direction: row;
 }
@@ -279,23 +279,25 @@ nav {
   margin-right: 0.5rem;
 }
 
-.login-form-container, .signup-form-container {
+.login-form-container,
+.signup-form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-
 @media (max-width: 768px) {
 
-    .question-summary {
-        display: flex;
-        flex-direction: column;
-    }
+  .question-summary {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .question-stats {
-        display: flex;
-        flex-direction: row;
-    }
+  .question-stats {
+    display: flex;
+    flex-direction: row;
+  }
+  
+
 }
