@@ -11,14 +11,11 @@
   <div class="question-container">
     {% for question in questions %}
     <div class="question-summary">
-      <div class="question-stats">
-        <p class="question-vote">{{ question.question_vote }} votes</p>
-        <p class="question-answer">{{ question.question_answer }} answers</p>
-        <p class="question-views">{{ question.question_views }} views</p>
-      </div>
       <div class="question-detail">
         <p>
-          <a class="question-title" href="{% url 'question_detail' id=question.id %}"
+          <a
+            class="question-title"
+            href="{% url 'question_detail' id=question.id %}"
             >{{ question.question_title }}</a
           >
         </p>
