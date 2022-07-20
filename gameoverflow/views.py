@@ -29,6 +29,7 @@ def question_detail(request, id):
             return redirect('question_detail', id=answer.question.id)
     return render(request, 'gameoverflow/question_detail.html', {'question': question, 'answers': answers, 'answerform': answerform})
 
+
 @login_required
 def question_edit(request, id):
     question = Question.objects.get(pk=id)
@@ -41,6 +42,7 @@ def question_edit(request, id):
     else:
         form = QuestionForm(instance=question)
     return render(request, 'gameoverflow/question_form.html', {'form': form})
+
 
 @login_required
 def answer_edit(request, id):
@@ -55,10 +57,12 @@ def answer_edit(request, id):
         form = AnswerForm(instance=answer)
     return render(request, 'gameoverflow/answer_form.html', {'form': form})
 
+
 @login_required
 def question_delete(request, id):
     Question.objects.get(pk=id).delete()
     return redirect('question_list')
+
 
 @login_required
 def answer_delete(request, id):
@@ -80,6 +84,7 @@ def question_ask(request):
     else:
         form = QuestionForm()
     return render(request, 'gameoverflow/question_ask.html', {'form': form})
+
 
 class Signup(View):
     def get(self, request):

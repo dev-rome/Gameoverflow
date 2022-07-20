@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'gameoverflow_django.wsgi.application'
 CORS_ALLOW_ALL_ORIGINS = True
 
 DATABASES = {
-  'default': dj_database_url.config(conn_max_age=600)
+    'default': dj_database_url.config(conn_max_age=600)
 }
 
 # Password validation
@@ -144,4 +144,4 @@ LOGIN_REDIRECT_URL = 'question_list'
 LOGOUT_REDIRECT_URL = 'question_list'
 
 
-STATIC_ROOT=os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
