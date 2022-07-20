@@ -21,11 +21,6 @@
   </div>
 
   <ul class="question-container-detail">
-    <div class="question-count">
-      <i class="fa-solid fa-angle-up up"></i>
-      <span class="vote-count">{{ question.question_vote }}</span>
-      <i class="fa-solid fa-angle-down down"></i>
-    </div>
     <div class="question-col">
       <li class="question-text-detail">{{ question.question_text }}</li>
       <div class="question-summary-bottom">
@@ -44,18 +39,12 @@
 
   <!-- show answer -->
   <div class="answer-container">
-    <p class="answer-title">{{question.question_answer }} Answers</p>
+    <p class="answer-title">Answers</p>
   </div>
 
   <div class="answer-detail-container">
     {% for answer in answers %}
     <div class="answer-detail">
-
-        <div class="question-count">
-            <i class="fa-solid fa-angle-up up"></i>
-            <span class="vote-count">{{ question.question_vote }}</span>
-            <i class="fa-solid fa-angle-down down"></i>
-        </div>
         <div class="answer-col">
             <p class="answer-text">{{ answer.answer_text }}</p>
             <div class="answer-user">
