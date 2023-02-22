@@ -33,7 +33,7 @@ Gameoverflow is a small Q&A gaming app that allows users to post questions and a
 * CSS
 * VsCode
 * Heroku
-This project was built using these technologies.
+
 
 # User Stories
 
